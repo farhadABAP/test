@@ -1,1 +1,1518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step 1: Acquiring Core ABAP Skills – C_ABAPD Study Guide</title>
+    <style>
+        :root {
+            --sap-blue: #0a6ed1;
+            --sap-dark: #1d2d3e;
+            --sap-light: #f5f6f7;
+            --sap-green: #36a41d;
+            --sap-red: #bb0000;
+            --sap-orange: #e9730c;
+            --border-radius: 8px;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: "72", "Segoe UI", Arial, sans-serif;
+            background: #eef1f5;
+            color: #32363a;
+            line-height: 1.65;
+            padding: 24px;
+        }
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        header {
+            background: var(--sap-dark);
+            color: #fff;
+            padding: 32px 40px;
+        }
+        header h1 { font-size: 1.9rem; font-weight: 600; margin-bottom: 6px; }
+        header p { opacity: 0.85; font-size: 1rem; }
+        .badge {
+            display: inline-block;
+            background: var(--sap-blue);
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+        nav {
+            background: var(--sap-light);
+            padding: 16px 40px;
+            border-bottom: 1px solid #d9d9d9;
+        }
+        nav ol { list-style: none; display: flex; flex-wrap: wrap; gap: 8px 20px; }
+        nav a { color: var(--sap-blue); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+        nav a:hover { text-decoration: underline; }
+        main { padding: 32px 40px 48px; }
+        section { margin-bottom: 40px; }
+        h2 {
+            font-size: 1.35rem;
+            color: var(--sap-dark);
+            border-bottom: 2px solid var(--sap-blue);
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+        }
+        h3 { font-size: 1.1rem; color: var(--sap-dark); margin: 20px 0 10px; }
+        h4 { font-size: 1rem; color: var(--sap-blue); margin: 16px 0 8px; }
+        p, li { font-size: 0.95rem; }
+        ul, ol { padding-left: 22px; margin-bottom: 12px; }
+        li { margin-bottom: 6px; }
+        code {
+            font-family: "Consolas", "Courier New", monospace;
+            background: #f0f3f7;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.88rem;
+            color: #1d2d3e;
+        }
+        pre {
+            background: #1d2d3e;
+            color: #e8eaed;
+            padding: 16px 20px;
+            border-radius: var(--border-radius);
+            overflow-x: auto;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            margin: 12px 0 16px;
+            font-family: "Consolas", "Courier New", monospace;
+        }
+        pre code { background: none; color: inherit; padding: 0; font-size: inherit; }
+        .callout {
+            border-left: 4px solid var(--sap-blue);
+            background: #f0f6fc;
+            padding: 14px 18px;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            margin: 14px 0;
+            font-size: 0.93rem;
+        }
+        .callout.warning { border-left-color: var(--sap-orange); background: #fff8f0; }
+        .callout.danger { border-left-color: var(--sap-red); background: #fdf0f0; }
+        .callout.success { border-left-color: var(--sap-green); background: #f0faf0; }
+        .callout strong { display: block; margin-bottom: 4px; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 14px 0 18px;
+            font-size: 0.9rem;
+        }
+        th, td {
+            text-align: left;
+            padding: 10px 14px;
+            border-bottom: 1px solid #d9d9d9;
+        }
+        th {
+            background: var(--sap-light);
+            font-weight: 600;
+            color: var(--sap-dark);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        tr:hover td { background: #fafbfc; }
+        .exercise {
+            background: #f8f9fb;
+            border: 1px solid #e0e4e8;
+            border-radius: var(--border-radius);
+            padding: 18px 22px;
+            margin: 16px 0;
+        }
+        .exercise-title {
+            font-weight: 700;
+            color: var(--sap-dark);
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+        .exercise-title::before {
+            content: "▶ ";
+            color: var(--sap-blue);
+        }
+        details {
+            margin: 12px 0;
+            border: 1px solid #d9d9d9;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+        summary {
+            background: var(--sap-light);
+            padding: 12px 18px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.92rem;
+            color: var(--sap-dark);
+            user-select: none;
+        }
+        summary:hover { background: #e8ecf0; }
+        details[open] summary { border-bottom: 1px solid #d9d9d9; }
+        .details-content { padding: 16px 20px; }
+        .answer-label {
+            display: inline-block;
+            background: var(--sap-green);
+            color: #fff;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+        .keyword { color: var(--sap-blue); font-weight: 600; }
+        .tag {
+            display: inline-block;
+            background: #e8f0fe;
+            color: var(--sap-blue);
+            font-size: 0.78rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-right: 4px;
+            font-weight: 500;
+        }
+        .footer {
+            background: var(--sap-dark);
+            color: #b0b8c0;
+            padding: 24px 40px;
+            font-size: 0.85rem;
+            text-align: center;
+        }
+        .footer a { color: #7cb8f0; text-decoration: none; }
+        @media print {
+            body { background: #fff; padding: 0; }
+            .container { box-shadow: none; border-radius: 0; }
+            pre { border: 1px solid #ccc; }
+            details { break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
 
+<header>
+    <div class="badge">Step 1 of 4</div>
+    <h1>Acquiring Core ABAP Skills</h1>
+    <p>Complete study guide for the C_ABAPD System-Based Assessment</p>
+</header>
+
+<nav>
+    <ol>
+        <li><a href="#environment">1. Environment Setup</a></li>
+        <li><a href="#syntax">2. Modern ABAP Syntax</a></li>
+        <li><a href="#tables">3. Internal Tables</a></li>
+        <li><a href="#sql">4. ABAP SQL</a></li>
+        <li><a href="#cds">5. CDS Views</a></li>
+        <li><a href="#cloud">6. ABAP Cloud &amp; Clean Core</a></li>
+        <li><a href="#oo">7. OO Design</a></li>
+        <li><a href="#joule">8. Joule for Developers</a></li>
+        <li><a href="#quiz">9. Practice Quiz</a></li>
+    </ol>
+</nav>
+
+<main>
+
+<!-- ============ SECTION 1 ============ -->
+<section id="environment">
+<h2>1. Environment Setup</h2>
+
+<p>Before you write a single line of code, you need a working ABAP Cloud environment and the right tools. This is not optional — the exam is a <strong>System-Based Assessment (SyBA)</strong>, meaning you will develop in a live system.</p>
+
+<h3>1.1 Get a Free SAP BTP ABAP Environment Trial</h3>
+
+<ol>
+    <li>Go to the <strong>SAP BTP Trial</strong> page and sign up for a free account if you don't have one.</li>
+    <li>In the SAP BTP Cockpit, navigate to <strong>Global Account → Entitlements → Entity Assignments</strong>.</li>
+    <li>Select your subaccount, click <strong>Configure Entitlements → Add Service Plans</strong>.</li>
+    <li>Search for <strong>ABAP Environment</strong>, select the <strong>free plan</strong>, and click <strong>Save</strong>.</li>
+    <li>Go to <strong>Instances and Subscriptions</strong>, click <strong>Create</strong>, and select <strong>ABAP Environment</strong>. Choose the free plan and complete the creation wizard.</li>
+</ol>
+
+<div class="callout">
+    <strong>💡 Tip</strong>
+    The ABAP Environment trial gives you a fully functional ABAP Cloud system with ADT connectivity. It is the same environment type used in the exam.
+</div>
+
+<h3>1.2 Install ABAP Development Tools (ADT)</h3>
+
+<ol>
+    <li>Download and install <strong>Eclipse IDE for Java Developers</strong> (or the Eclipse Installer).</li>
+    <li>In Eclipse, go to <strong>Help → Install New Software</strong>.</li>
+    <li>Add the ADT update site: <code>https://tools.hana.ondemand.com/latest</code></li>
+    <li>Select <strong>ABAP Development Tools</strong> and install it.</li>
+    <li>Restart Eclipse.</li>
+    <li>Go to <strong>File → New → ABAP Cloud Project</strong>. Enter the service key or connection details from your BTP ABAP Environment instance.</li>
+</ol>
+
+<h3>1.3 Create Your Practice Package</h3>
+
+<pre><code>Package: ZAC_&lt;your_community_ID&gt;
+    └── Description: Step 1 practice – Core ABAP Skills
+    └── Software Component: ZLOCAL (or your trial default)
+    └── Transport Layer: (leave default for trial)</code></pre>
+
+<div class="exercise">
+    <div class="exercise-title">Exercise 1.1 – Environment Verification</div>
+    <p>After setting up ADT and connecting to your trial system:</p>
+    <ol>
+        <li>Create a new ABAP class in your package named <code>ZCL_STEP1_HELLO</code>.</li>
+        <li>Add a static method <code>say_hello</code> that returns the string <code>'Hello ABAP Cloud'</code>.</li>
+        <li>Create a console application (or use ABAP Console) to call the method and display the result.</li>
+        <li>Run an <strong>ABAP Test Cockpit (ATC)</strong> check with the <strong>ABAP Cloud</strong> variant. Fix any errors.</li>
+    </ol>
+</div>
+
+<details>
+    <summary>Show Solution – Exercise 1.1</summary>
+    <div class="details-content">
+        <span class="answer-label">Solution</span>
+        <pre><code>CLASS zcl_step1_hello DEFINITION
+  PUBLIC
+  FINAL
+  CREATE PUBLIC.
+
+  PUBLIC SECTION.
+    CLASS-METHODS say_hello
+      RETURNING VALUE(rv_text) TYPE string.
+
+ENDCLASS.
+
+CLASS zcl_step1_hello IMPLEMENTATION.
+  METHOD say_hello.
+    rv_text = 'Hello ABAP Cloud'.
+  ENDMETHOD.
+ENDCLASS.</code></pre>
+
+<pre><code>" Console application to call the method
+DATA(lv_result) = zcl_step1_hello=>say_hello( ).
+out->write( lv_result ).</code></pre>
+
+<div class="callout success">
+    <strong>✅ ATC Check</strong>
+    If ATC returns no errors, your environment is correctly configured for ABAP Cloud development.
+</div>
+    </div>
+</details>
+</section>
+
+<!-- ============ SECTION 2 ============ -->
+<section id="syntax">
+<h2>2. Modern ABAP Syntax</h2>
+
+<p>ABAP Cloud enforces modern syntax. Classic constructs like <code>WRITE</code> for output, <code>TABLES</code> declarations, and obsolete statements are restricted. You must be fluent in constructor expressions and functional programming constructs.</p>
+
+<h3>2.1 Constructor Expressions Overview</h3>
+
+<table>
+    <tr>
+        <th>Expression</th>
+        <th>Purpose</th>
+        <th>Returns</th>
+    </tr>
+    <tr>
+        <td><code>VALUE</code></td>
+        <td>Construct a structure, table, or elementary value</td>
+        <td>Structured or table value</td>
+    </tr>
+    <tr>
+        <td><code>REDUCE</code></td>
+        <td>Aggregate values from an internal table into a single result</td>
+        <td>Single value or structure</td>
+    </tr>
+    <tr>
+        <td><code>FOR</code></td>
+        <td>Iterate over a table or generate a sequence inside <code>VALUE</code>/<code>REDUCE</code></td>
+        <td>Iteration expression</td>
+    </tr>
+    <tr>
+        <td><code>COND</code></td>
+        <td>Conditional expression (if-then-else)</td>
+        <td>Value based on condition</td>
+    </tr>
+    <tr>
+        <td><code>SWITCH</code></td>
+        <td>Case-like expression based on a value</td>
+        <td>Value based on case</td>
+    </tr>
+    <tr>
+        <td><code>FILTER</code></td>
+        <td>Filter an internal table</td>
+        <td>Filtered table</td>
+    </tr>
+</table>
+
+<h3>2.2 <code>VALUE</code> – Constructing Values</h3>
+
+<p><code>VALUE</code> creates a value from scratch. It is used for structures, internal tables, and elementary types.</p>
+
+<h4>Structures</h4>
+<pre><code>" Define a structure type
+TYPES: BEGIN OF ty_person,
+         name TYPE string,
+         age  TYPE i,
+       END OF ty_person.
+
+" Construct a structure
+DATA(ls_person) = VALUE ty_person( name = 'Alice' age = 30 ).</code></pre>
+
+<h4>Internal Tables</h4>
+<pre><code>" Simple table
+DATA(lt_numbers) = VALUE i_table( ( 1 ) ( 2 ) ( 3 ) ( 4 ) ).
+
+" Table of structures
+TYPES: BEGIN OF ty_flight,
+         carrid TYPE s_carr_id,
+         connid TYPE s_conn_id,
+       END OF ty_flight.
+
+DATA(lt_flights) = VALUE ty_flight_table(
+  ( carrid = 'LH' connid = '0400' )
+  ( carrid = 'AA' connid = '0017' )
+).</code></pre>
+
+<h3>2.3 <code>REDUCE</code> – Aggregation</h3>
+
+<p><code>REDUCE</code> iterates over an internal table and accumulates a result. It is the modern replacement for <code>LOOP AT ... SUM</code> or manual accumulation.</p>
+
+<pre><code>DATA(numbers) = VALUE i_table( ( 1 ) ( 2 ) ( 3 ) ( 4 ) ( 5 ) ).
+
+" Sum
+DATA(sum) = REDUCE i( INIT x = 0 FOR n IN numbers NEXT x = x + n ).
+" Result: 15
+
+" Maximum
+DATA(max) = REDUCE i( INIT m = 0 FOR n IN numbers NEXT m = COND #( WHEN n > m THEN n ELSE m ) ).
+" Result: 5
+
+" Minimum
+DATA(min) = REDUCE i( INIT m = 999 FOR n IN numbers NEXT m = COND #( WHEN n < m THEN n ELSE m ) ).
+" Result: 1</code></pre>
+
+<h4>REDUCE with a Filter Condition</h4>
+<pre><code>" Sum only even numbers
+DATA(sum_even) = REDUCE i(
+  INIT s = 0
+  FOR n IN numbers
+  WHERE ( n MOD 2 = 0 )
+  NEXT s = s + n
+).
+" Result: 6  (2 + 4)</code></pre>
+
+<h3>2.4 <code>COND</code> and <code>SWITCH</code></h3>
+
+<pre><code>" COND – if-then-else
+DATA(lv_text) = COND string(
+  WHEN sy-subrc = 0 THEN 'Success'
+  ELSE 'Failure'
+).
+
+" SWITCH – case-like
+DATA(lv_category) = SWITCH string( lv_score
+  WHEN 1 THEN 'Low'
+  WHEN 2 THEN 'Medium'
+  WHEN 3 THEN 'High'
+  ELSE 'Unknown'
+).</code></pre>
+
+<h3>2.5 <code>FOR</code> – Iteration Expressions</h3>
+
+<pre><code>" Build a table from an existing table (mapping)
+DATA(lt_names) = VALUE string_table(
+  FOR ls_person IN lt_people
+  ( ls_person-name )
+).
+
+" Build a table with a condition
+DATA(lt_adults) = VALUE ty_person_table(
+  FOR ls_p IN lt_people
+  WHERE ( ls_p-age >= 18 )
+  ( ls_p )
+).</code></pre>
+
+<div class="exercise">
+    <div class="exercise-title">Exercise 2.1 – REDUCE Practice</div>
+    <p>Given this internal table:</p>
+    <pre><code>DATA(lt_scores) = VALUE i_table( ( 85 ) ( 92 ) ( 78 ) ( 95 ) ( 60 ) ( 88 ) ).</code></pre>
+    <p>Write a single ABAP statement using <code>REDUCE</code> to calculate:</p>
+    <ol>
+        <li>The sum of all scores.</li>
+        <li>The highest score.</li>
+        <li>The average score (as a decimal).</li>
+    </ol>
+</div>
+
+<details>
+    <summary>Show Solution – Exercise 2.1</summary>
+    <div class="details-content">
+        <span class="answer-label">Solution</span>
+        <pre><code>" 1. Sum
+DATA(lv_sum) = REDUCE i( INIT s = 0 FOR n IN lt_scores NEXT s = s + n ).
+" Result: 498
+
+" 2. Highest
+DATA(lv_max) = REDUCE i( INIT m = 0 FOR n IN lt_scores NEXT m = COND #( WHEN n > m THEN n ELSE m ) ).
+" Result: 95
+
+" 3. Average (decfloat)
+DATA(lv_avg) = REDUCE decfloat34(
+  INIT s = 0 count = 0
+  FOR n IN lt_scores
+  NEXT s = s + n count = count + 1
+).
+DATA(lv_avg_final) = lv_avg / 6.
+" Result: 83.0</code></pre>
+    </div>
+</details>
+
+<div class="exercise">
+    <div class="exercise-title">Exercise 2.2 – VALUE and FOR</div>
+    <p>Create a structure type <code>ty_employee</code> with fields <code>name</code> (string), <code>department</code> (string), and <code>salary</code> (i).</p>
+    <p>Then create an internal table of 3 employees using <code>VALUE</code>. Use <code>FOR</code> to build a new table containing only employees from the 'IT' department.</p>
+</div>
+
+<details>
+    <summary>Show Solution – Exercise 2.2</summary>
+    <div class="details-content">
+        <span class="answer-label">Solution</span>
+        <pre><code>TYPES: BEGIN OF ty_employee,
+         name       TYPE string,
+         department TYPE string,
+         salary     TYPE i,
+       END OF ty_employee,
+       ty_employee_table TYPE STANDARD TABLE OF ty_employee WITH EMPTY KEY.
+
+DATA(lt_employees) = VALUE ty_employee_table(
+  ( name = 'Alice' department = 'IT'      salary = 75000 )
+  ( name = 'Bob'   department = 'HR'      salary = 60000 )
+  ( name = 'Carol' department = 'IT'      salary = 82000 )
+).
+
+DATA(lt_it) = VALUE ty_employee_table(
+  FOR ls_emp IN lt_employees
+  WHERE ( ls_emp-department = 'IT' )
+  ( ls_emp )
+).
+
+" lt_it contains: Alice (75000) and Carol (82000)</code></pre>
+    </div>
+</details>
+</section>
+
+<!-- ============ SECTION 3 ============ -->
+<section id="tables">
+<h2>3. Internal Tables</h2>
+
+<p>Internal tables are the backbone of ABAP programming. Choosing the right table type is critical for performance and is a common exam topic.</p>
+
+<h3>3.1 Table Type Comparison</h3>
+
+<table>
+    <tr>
+        <th>Table Type</th>
+        <th>Key</th>
+        <th>Access</th>
+        <th>Read Complexity</th>
+        <th>Best For</th>
+    </tr>
+    <tr>
+        <td><strong>Standard</strong></td>
+        <td>Non-unique (default)</td>
+        <td>Index + key</td>
+        <td>O(n) for key access</td>
+        <td>General purpose, sequential processing</td>
+    </tr>
+    <tr>
+        <td><strong>Sorted</strong></td>
+        <td>Unique or non-unique</td>
+        <td>Index + key</td>
+        <td>O(log n) for key access</td>
+        <td>Large tables with frequent key reads, partial key access</td>
+    </tr>
+    <tr>
+        <td><strong>Hashed</strong></td>
+        <td>Must be unique</td>
+        <td>Key only (no index)</td>
+        <td>O(1) constant time</td>
+        <td>Very large tables, frequent unique key reads</td>
+    </tr>
+</table>
+
+<div class="callout">
+    <strong>📌 Exam Rule of Thumb</strong>
+    <ul>
+        <li>Need <strong>index access</strong> (e.g., loop with counter)? → <strong>Standard</strong></li>
+        <li>Need <strong>fast key reads</strong> on a large table with non-unique keys? → <strong>Sorted</strong></li>
+        <li>Need <strong>constant-time unique key access</strong> on a huge table? → <strong>Hashed</strong></li>
+    </ul>
+</div>
+
+<h3>3.2 Declaring Internal Tables</h3>
+
+<pre><code>" Standard table
+DATA lt_std TYPE STANDARD TABLE OF mara.
+
+" Sorted table with unique key
+DATA lt_sorted TYPE SORTED TABLE OF mara WITH UNIQUE KEY matnr.
+
+" Hashed table with unique key
+DATA lt_hashed TYPE HASHED TABLE OF mara WITH UNIQUE KEY matnr.
+
+" Modern inline declaration
+DATA(lt_inline) = VALUE i_table( ( 1 ) ( 2 ) ( 3 ) ).</code></pre>
+
+<h3>3.3 Reading from Internal Tables</h3>
+
+<pre><code>" Standard table – READ TABLE
+READ TABLE lt_std INTO DATA(ls_mara) WITH KEY matnr = 'ABC'.
+IF sy-subrc = 0.
+  " found
+ENDIF.
+
+" Sorted table – binary search
+READ TABLE lt_sorted INTO DATA(ls_sorted) WITH KEY matnr = 'ABC'
+  BINARY SEARCH.
+
+" Hashed table – direct key access
+READ TABLE lt_hashed INTO DATA(ls_hashed) WITH TABLE KEY matnr = 'ABC'.
+
+" Modern expression – table expression
+TRY.
+    DATA(ls_row) = lt_std[ matnr = 'ABC' ].
+  CATCH cx_sy_itab_line_not_found.
+    " not found
+ENDTRY.</code></pre>
+
+<h3>3.4 Looping with Modern Syntax</h3>
+
+<pre><code>" Classic loop with work area
+LOOP AT lt_std INTO DATA(ls_work).
+  " process ls_work
+ENDLOOP.
+
+" Loop with field symbol (more performant)
+LOOP AT lt_std ASSIGNING FIELD-SYMBOL(&lt;ls_row&gt;).
+  " process &lt;ls_row&gt;
+ENDLOOP.
+
+" Loop with index
+LOOP AT lt_std INTO DATA(ls_idx) FROM 1 TO 10.
+  " process first 10 rows
+ENDLOOP.</code></pre>
+
+<h3>3.5 Finding the Maximum – Three Approaches</h3>
+
+<pre><code>DATA(lt_nums) = VALUE i_table( ( 45 ) ( 12 ) ( 89 ) ( 34 ) ( 67 ) ).
+
+" Approach 1: LOOP
+DATA(lv_max1) = 0.
+LOOP AT lt_nums INTO DATA(lv_n).
+  IF lv_n > lv_max1.
+    lv_max1 = lv_n.
+  ENDIF.
+ENDLOOP.
+
+" Approach 2: REDUCE
+DATA(lv_max2) = REDUCE i(
+  INIT m = 0
+  FOR n IN lt_nums
+  NEXT m = COND #( WHEN n > m THEN n ELSE m )
+).
+
+" Approach 3: MAX function (for standard tables)
+DATA(lv_max3) = 0.
+LOOP AT lt_nums INTO DATA(lv_n2).
+  lv_max3 = nmax( val1 = lv_max3 val2 = lv_n2 ).
+ENDLOOP.</code></pre>
+
+<div class="exercise">
+    <div class="exercise-title">Exercise 3.1 – Table Type Selection</div>
+    <p>For each scenario, choose the best internal table type and explain why:</p>
+    <ol>
+        <li>You need to store 500,000 customer records and look up customers by their unique ID very frequently.</li>
+        <li>You need to read a small configuration table (20 rows) sequentially in a loop.</li>
+        <li>You need to store 100,000 sales orders and frequently search for all orders belonging to a specific customer (customer ID is not unique per order).</li>
+    </ol>
+</div>
+
+<details>
+    <summary>Show Solution – Exercise 3.1</summary>
+    <div class="details-content">
+        <span class="answer-label">Solution</span>
+        <p><strong>1. Hashed table.</strong> Unique key, very large dataset, frequent unique key lookups. Hashed gives O(1) constant-time access.</p>
+        <p><strong>2. Standard table.</strong> Small dataset, sequential access. Index access is efficient and the table is simple to use.</p>
+        <p><strong>3. Sorted table.</strong> Non-unique key (customer ID), large dataset, frequent key-based reads. Sorted tables support binary search (O(log n)) and allow non-unique keys.</p>
+    </div>
+</details>
+
+<div class="exercise">
+    <div class="exercise-title">Exercise 3.2 – Method to Find the Highest Number</div>
+    <p>Write a method that takes a <code>STANDARD TABLE OF i</code> and returns the highest number. Use modern syntax. Handle the case where the table is empty.</p>
+</div>
+
+<details>
+    <summary>Show Solution – Exercise 3.2</summary>
+    <div class="details-content">
+        <span class="answer-label">Solution</span>
+        <pre><code>CLASS zcl_step1_utils DEFINITION
+  PUBLIC
+  FINAL
+  CREATE PUBLIC.
+
+  PUBLIC SECTION.
+    CLASS-METHODS get_highest
+      IMPORTING it_numbers TYPE STANDARD TABLE OF i
+      RETURNING VALUE(rv_max) TYPE i.
+
+ENDCLASS.
+
+CLASS zcl_step1_utils IMPLEMENTATION.
+  METHOD get_highest.
+    IF it_numbers IS INITIAL.
+      rv_max = 0.
+      RETURN.
+    ENDIF.
+
+    rv_max = REDUCE i(
+      INIT m = 0
+      FOR n IN it_numbers
+      NEXT m = COND #( WHEN n > m THEN n ELSE m )
+    ).
+  ENDMETHOD.
+ENDCLASS.</code></pre>
+
+<div class="callout">
+    <strong>💡 Note</strong>
+    <code>REDUCE</code> handles the empty table gracefully because the <code>INIT</code> value is 0 and no iterations occur, so <code>rv_max</code> stays 0.
+</div>
+    </div>
+</details>
+</section>
+
+<!-- ============ SECTION 4 ============ -->
+<section id="sql">
+<h2>4. ABAP SQL</h2>
+
+<p>ABAP SQL is the modern way to access data in ABAP Cloud. It uses <strong>host variables</strong> (prefixed with <code>@</code>), explicit field lists, and inline declarations.</p>
+
+<h3>4.1 Basic SELECT</h3>
+
+<pre><code>" Old style (avoid in ABAP Cloud)
+SELECT * FROM mara INTO TABLE lt_mara.
+
+" Modern style – explicit fields, inline declaration, host variable
+SELECT matnr, mtart, matkl
+  FROM mara
+  WHERE mtart = @lv_mtart
+  INTO TABLE @DATA(lt_materials).</code></pre>
+
+<h3>4.2 Host Variables and Host Expressions</h3>
+
+<p>Host variables are ABAP data objects used in SQL statements. They must be prefixed with <code>@</code>.</p>
+
+<pre><code>DATA(lv_carrid) = 'LH'.
+
+SELECT carrid, carrname
+  FROM scarr
+  WHERE carrid = @lv_carrid
+  INTO TABLE @DATA(lt_carriers).</code></pre>
+
+<h3>4.3 Joins</h3>
+
+<h4>INNER JOIN</h4>
+<p>Returns only rows where the join condition matches in <strong>both</strong> tables.</p>
+
+<pre><code>SELECT a.carrid, a.carrname, b.connid, b.cityfrom, b.cityto
+  FROM scarr AS a
+  INNER JOIN spfli AS b ON a.carrid = b.carrid
+  WHERE a.carrid = @lv_carrid
+  INTO TABLE @DATA(lt_flights).</code></pre>
+
+<h4>LEFT OUTER JOIN</h4>
+<p>Returns <strong>all rows from the left table</strong>, plus matching rows from the right table. If no match exists, right-side fields are <code>NULL</code>.</p>
+
+<pre><code>SELECT a.carrid, a.carrname, b.connid, b.cityfrom
+  FROM scarr AS a
+  LEFT OUTER JOIN spfli AS b ON a.carrid = b.carrid
+  INTO TABLE @DATA(lt_all_carriers).</code></pre>
+
+<div class="callout">
+    <strong>📌 Exam Tip</strong>
+    The default join type is <strong>INNER JOIN</strong>. If you write <code>JOIN</code> without specifying, ABAP treats it as <code>INNER JOIN</code>.
+</div>
+
+<h3>4.4 Aggregation</h3>
+
+<pre><code>" Count, sum, average, max, min
+SELECT carrid,
+       COUNT(*) AS flight_count,
+       MAX( distance ) AS max_distance,
+       AVG( distance ) AS avg_distance
+  FROM spfli
+  GROUP BY carrid
+  HAVING COUNT(*) > 1
+  INTO TABLE @DATA(lt_stats).</code></pre>
+
+<h3>4.5 Code Pushdown</h3>
+
+<p><strong>Code pushdown</strong> means moving data-intensive logic from the ABAP application server to the database (SAP HANA). Instead of reading all data into ABAP and processing it in a loop, you let the database do the heavy lifting.</p>
+
+<table>
+    <tr>
+        <th>Without Code Pushdown (Slow)</th>
+        <th>With Code Pushdown (Fast)</th>
+    </tr>
+    <tr>
+        <td>Read all rows into an internal table, then loop to filter/sum</td>
+        <td>Use <code>WHERE</code>, <code>GROUP BY</code>, and aggregations in SQL</td>
+    </tr>
+    <tr>
+        <td>Multiple SELECT statements for related data</td>
+        <td>Use <code>JOIN</code> to combine tables</td>
+    </tr>
+    <tr>
+        <td>Classic Open SQL with <code>SELECT *</code></td>
+        <td>Modern ABAP SQL with explicit fields and host variables</td>
+    </tr>
+</table>
+
+<div class="exercise">
+    <div class="exercise-title">Exercise 4.1 – Write an INNER JOIN</div>
+    <p>Write an ABAP SQL statement that joins <code>scarr</code> and <code>spfli</code> on <code>carrid</code>. Return <code>carrid</code>, <code>carrname</code>, <code>connid</code>, <code>cityfrom</code>, and <code>cityto</code> for a given <code>carrid</code> passed as a parameter.</p>
+</div>
+
+<details>
+    <summary>Show Solution – Exercise 4.1</summary>
+    <div class="details-content">
+        <span class="answer-label">Solution</span>
+        <pre><code>METHOD get_flights.
+  SELECT a.carrid, a.carrname, b.connid, b.cityfrom, b.cityto
+    FROM scarr AS a
+    INNER JOIN spfli AS b ON a.carrid = b.carrid
+    WHERE a.carrid = @iv_carrid
+    INTO TABLE @DATA(lt_result).
+ENDMETHOD.</code></pre>
+    </div>
+</details>
+
+<div class="exercise">
+    <div class="exercise-title">Exercise 4.2 – Code Pushdown</div>
+    <p>You have a table <code>sflight</code> with columns <code>carrid</code>, <code>connid</code>, <code>fldate</code>, and <code>seatsmax</code>. Write a query that returns the total maximum seats per carrier, but only for carriers with more than 5 flights. Sort by total seats descending.</p>
+</div>
+
+<details>
+    <summary>Show Solution – Exercise 4.2</summary>
+    <div class="details-content">
+        <span class="answer-label">Solution</span>
+        <pre><code>SELECT carrid,
+       SUM( seatsmax ) AS total_seats,
+       COUNT(*) AS flight_count
+  FROM sflight
+  GROUP BY carrid
+  HAVING COUNT(*) > 5
+  ORDER BY total_seats DESCENDING
+  INTO TABLE @DATA(lt_seats).</code></pre>
+    </div>
+</details>
+</section>
+
+<!-- ============ SECTION 5 ============ -->
+<section id="cds">
+<h2>5. CDS Views</h2>
+
+<p>Core Data Services (CDS) views are the foundation of the RAP data model. In ABAP Cloud, you cannot access database tables directly in many cases — you must use CDS views.</p>
+
+<h3>5.1 Interface View vs. Projection View</h3>
+
+<table>
+    <tr>
+        <th>Aspect</th>
+        <th>Interface View (ZI_)</th>
+        <th>Projection View (ZC_)</th>
+    </tr>
+    <tr>
+        <td><strong>Purpose</strong></td>
+        <td>Core data model — defines the business entity</td>
+        <td>Exposes data for a specific use case (Fiori app, API)</td>
+    </tr>
+    <tr>
+        <td><strong>Data Source</strong></td>
+        <td>Directly accesses database tables</td>
+        <td>Built on top of interface views</td>
+    </tr>
+    <tr>
+        <td><strong>Fields</strong></td>
+        <td>All relevant business fields, associations</td>
+        <td>Only the fields required by the consumer</td>
+    </tr>
+    <tr>
+        <td><strong>Annotations</strong></td>
+        <td>Core semantic annotations (e.g., <code>@Semantics</code>)</td>
+        <td>UI annotations (e.g., <code>@UI</code>), search annotations</td>
+    </tr>
+    <tr>
+        <td><strong>Reusability</strong></td>
+        <td>Reusable across multiple applications</td>
+        <td>Specific to one application or service</td>
+    </tr>
+    <tr>
+        <td><strong>Naming</strong></td>
+        <td><code>ZI_&lt;EntityName&gt;</code></td>
+        <td><code>ZC_&lt;EntityName&gt;</code></td>
+    </tr>
+</table>
+
+<div class="callout">
+    <strong>📌 Why Two Layers?</strong>
+    <ul>
+        <li><strong>Separation of concerns</strong> — the interface view defines what the data <em>is</em>; the projection view defines how it <em>looks</em> to a specific consumer.</li>
+        <li><strong>Reusability</strong> — multiple projection views can be built on one interface view for different apps.</li>
+        <li><strong>Stability</strong> — changes to the UI don't affect the core data model.</li>
+    </ul>
+</div>
+
+<h3>5.2 Creating a Simple Interface View</h3>
+
+<pre><code>@AccessControl.authorizationCheck: #NOT_REQUIRED
+@EndUserText.label: 'Flight Interface View'
+define view entity ZI_Flight
+  as select from spfli
+{
+  key carrid,
+  key connid,
+      cityfrom,
+      cityto,
+      deptime,
+      arrtime,
+      distance,
+      distanceid
+}</code></pre>
+
+<h3>5.3 Creating a Projection View</h3>
+
+<pre><code>@AccessControl.authorizationCheck: #NOT_REQUIRED
+@EndUserText.label: 'Flight Projection View'
+@UI.headerInfo: { typeName: 'Flight', typeNamePlural: 'Flights' }
+define view entity ZC_Flight
+  as select from ZI_Flight
+{
+  key carrid,
+  key connid,
+      @UI.lineItem: [{ position: 10 }]
+      cityfrom,
+      @UI.lineItem: [{ position: 20 }]
+      cityto,
+      distance
+}</code></pre>
+
+<h3>5.4 Associations in CDS</h3>
+
+<pre><code>define view entity ZI_Carrier
+  as select from scarr
+  association [0..*] to ZI_Flight as _Flights
+    on $projection.carrid = _Flights.carrid
+{
+  key carrid,
+      carrname,
+      currcode,
+      _Flights
+}</code></pre>
+
+<div class="exercise">
+    <div class="exercise-title">Exercise 5.1 – CDS View Layers</div>
+    <p>Explain in your own words:</p>
+    <ol>
+        <li>Why does SAP use two CDS layers (interface + projection) in RAP?</li>
+        <li>If you need to add a UI annotation (e.g., a field label), which layer do you modify? Why?</li>
+        <li>If you need to add a new business field to the data model, which layer do you modify? Why?</li>
+    </ol>
+</div>
+
+<details>
+    <summary>Show Solution – Exercise 5.1</summary>
+    <div class="details-content">
+        <span class="answer-label">Solution</span>
+        <p><strong>1. Separation of concerns and reusability.</strong> The interface view defines the core business entity and can be reused by multiple projection views. The projection view tailors the data for a specific consumer (e.g., a Fiori app) without polluting the core model with UI-specific details.</p>
+        <p><strong>2. Projection view (ZC_).</strong> UI annotations are consumer-specific. They belong in the projection layer, not in the reusable core data model.</p>
+        <p><strong>3. Interface view (ZI_).</strong> Business fields are part of the core data model. Adding them at the interface level makes them available to all projection views built on top.</p>
+    </div>
+</details>
+</section>
+
+<!-- ============ SECTION 6 ============ -->
+<section id="cloud">
+<h2>6. ABAP Cloud &amp; Clean Core</h2>
+
+<p>ABAP Cloud is not a separate language — it is a <strong>restricted ABAP language version</strong> that enforces cloud-ready, upgrade-safe development. It is the foundation of SAP's Clean Core strategy.</p>
+
+<h3>6.1 What Is ABAP Cloud?</h3>
+
+<p>ABAP Cloud is a development model for SAP BTP ABAP Environment and S/4HANA Cloud that enforces:</p>
+
+<ul>
+    <li>Only <strong>released APIs</strong> from SAP may be used.</li>
+    <li>Only <strong>ABAP for Cloud Development</strong> language version is allowed.</li>
+    <li><strong>No direct database access</strong> to non-released tables.</li>
+    <li><strong>No modification</strong> of SAP standard code.</li>
+    <li><strong>No obsolete or classic statements</strong> (e.g., <code>WRITE</code>, <code>TABLES</code>, <code>EXEC SQL</code>).</li>
+</ul>
+
+<h3>6.2 Clean Core Principles</h3>
+
+<table>
+    <tr>
+        <th>Principle</th>
+        <th>What It Means</th>
+        <th>Example</th>
+    </tr>
+    <tr>
+        <td><strong>Released APIs only</strong></td>
+        <td>Use only SAP objects with a release contract (C0 or C1)</td>
+        <td>Use <code>I_Product</code> CDS view instead of <code>MARA</code> table</td>
+    </tr>
+    <tr>
+        <td><strong>No direct DB access</strong></td>
+        <td>Do not <code>SELECT</code> from non-released tables</td>
+        <td>Use CDS views or released APIs</td>
+    </tr>
+    <tr>
+        <td><strong>No modifications</strong></td>
+        <td>Do not change SAP standard objects</td>
+        <td>Use extension points, BAdIs, or RAP</td>
+    </tr>
+    <tr>
+        <td><strong>Upgrade-safe</strong></td>
+        <td>Custom code survives SAP upgrades without fixes</td>
+        <td>Stable interfaces via released APIs</td>
+    </tr>
+</table>
+
+<h3>6.3 Common ABAP Cloud Violations</h3>
+
+<div class="callout danger">
+    <strong>🚫 Forbidden in ABAP Cloud</strong>
+    <ul>
+        <li><code>SELECT * FROM mara</code> — direct access to a non-released table</li>
+        <li><code>WRITE</code> — classic output statement (use RAP or console output instead)</li>
+        <li><code>TABLES</code> — classic table declaration (use <code>DATA</code>)</li>
+        <li><code>EXEC SQL</code> — native SQL (use ABAP SQL)</li>
+        <li>Modifying SAP standard code via <code>MODIFY</code> or enhancements</li>
+    </ul>
+</div>
+
+<h3>6.4 Finding Released APIs</h3>
+
+<p>SAP provides the <strong>ABAP Cloud API State</strong> in ADT. To check if an object is released:</p>
+
+<ol>
+    <li>Open the object in ADT (e.g., a CDS view or class).</li>
+    <li>Check the <strong>Properties</strong> or <strong>API State</strong> view.</li>
+    <li>Look for the release contract: <code>C0</code> (released for cloud) or <code>C1</code> (restricted).</li>
+</ol>
+
+<h3>6.5 ATC Checks for ABAP Cloud</h3>
+
+<p>Always run ATC with the <strong>ABAP Cloud</strong> check variant before considering your code done. This catches:</p>
+
+<ul>
+    <li>Use of non-released APIs</li>
+    <li>Forbidden language constructs</li>
+    <li>Direct database access violations</li>
+    <li>Syntax not allowed in the cloud language version</li>
+</ul>
+
+<div class="exercise">
+    <div class="exercise-title">Exercise 6.1 – Fix the Bug</div>
+    <p>This code runs in classic ABAP but fails in ABAP Cloud. Identify all violations and rewrite it to be ABAP Cloud compliant.</p>
+    <pre><code>DATA: itab TYPE TABLE OF mara.
+SELECT * FROM mara INTO TABLE itab.
+LOOP AT itab INTO DATA(wa).
+  IF wa-matnr = 'ABC'.
+    WRITE / wa-matnr.
+  ENDIF.
+ENDLOOP.</code></pre>
+</div>
+
+<details>
+    <summary>Show Solution – Exercise 6.1</summary>
+    <div class="details-content">
+        <span class="answer-label">Solution</span>
+        <p><strong>Violations:</strong></p>
+        <ol>
+            <li><code>SELECT * FROM mara</code> — <code>MARA</code> is not released in ABAP Cloud.</li>
+            <li><code>WRITE</code> — classic output statement, not allowed in ABAP Cloud.</li>
+            <li><code>TABLE OF</code> without a proper table type — <code>TABLE OF mara</code> is a classic pattern.</li>
+        </ol>
+        <p><strong>ABAP Cloud compliant version:</strong></p>
+        <pre><code>" Use a released CDS view instead of MARA
+" I_Product is a released CDS view for product master data
+
+SELECT Product, ProductType
+  FROM I_Product
+  WHERE Product = @lv_matnr
+  INTO TABLE @DATA(lt_products).
+
+" For output, use a console application or RAP
+" (WRITE is not allowed in ABAP Cloud)
+
+LOOP AT lt_products INTO DATA(ls_product).
+  " Process data — do not use WRITE
+  " In a console app, use out->write( )
+  out->write( |Product: { ls_product-Product }| ).
+ENDLOOP.</code></pre>
+
+<div class="callout success">
+    <strong>✅ Key Takeaway</strong>
+    Replace direct table access with <strong>released CDS views</strong>. Replace <code>WRITE</code> with <strong>console output</strong> (in console apps) or <strong>RAP</strong> for UI.
+</div>
+    </div>
+</details>
+
+<div class="exercise">
+    <div class="exercise-title">Exercise 6.2 – ABAP Cloud Knowledge Check</div>
+    <p>Answer True or False:</p>
+    <ol>
+        <li>In ABAP Cloud, you can modify SAP standard code if you use a BAdI.</li>
+        <li>ABAP Cloud enforces the use of released APIs to ensure upgrade stability.</li>
+        <li><code>SELECT</code> from any database table is allowed in ABAP Cloud.</li>
+        <li>Clean Core means separating SAP code from custom code using stable interfaces.</li>
+        <li>The ATC check for ABAP Cloud will catch forbidden language constructs.</li>
+    </ol>
+</div>
+
+<details>
+    <summary>Show Solution – Exercise 6.2</summary>
+    <div class="details-content">
+        <span class="answer-label">Solution</span>
+        <ol>
+            <li><strong>False.</strong> BAdIs are allowed as extension points, but modifying SAP standard code directly is forbidden.</li>
+            <li><strong>True.</strong> Released APIs provide stable, upgrade-safe interfaces.</li>
+            <li><strong>False.</strong> Only released tables/CDS views can be accessed. Direct access to non-released tables is forbidden.</li>
+            <li><strong>True.</strong> Clean Core is about stable separation between SAP and custom code.</li>
+            <li><strong>True.</strong> ATC with the ABAP Cloud variant catches all these violations.</li>
+        </ol>
+    </div>
+</details>
+</section>
+
+<!-- ============ SECTION 7 ============ -->
+<section id="oo">
+<h2>7. Object-Oriented Design</h2>
+
+<p>ABAP Cloud is object-oriented at its core. You must understand the difference between static and instance methods, and when to use each.</p>
+
+<h3>7.1 Static vs. Instance Methods</h3>
+
+<table>
+    <tr>
+        <th>Aspect</th>
+        <th>Static Method</th>
+        <th>Instance Method</th>
+    </tr>
+    <tr>
+        <td><strong>Declaration</strong></td>
+        <td><code>CLASS-METHODS</code></td>
+        <td><code>METHODS</code></td>
+    </tr>
+    <tr>
+        <td><strong>Call Syntax</strong></td>
+        <td><code>zcl_class=&gt;method( )</code></td>
+        <td><code>lo_obj-&gt;method( )</code></td>
+    </tr>
+    <tr>
+        <td><strong>Access to Attributes</strong></td>
+        <td>Static attributes only</td>
+        <td>All attributes (static + instance)</td>
+    </tr>
+    <tr>
+        <td><strong>Object State</strong></td>
+        <td>No object state — shared by all instances</td>
+        <td>Can use and modify instance state</td>
+    </tr>
+    <tr>
+        <td><strong>Unit Testing</strong></td>
+        <td>Harder to mock</td>
+        <td>Easier to mock and inject dependencies</td>
+    </tr>
+    <tr>
+        <td><strong>When to Use</strong></td>
+        <td>Utility functions with no state (e.g., string helpers, math helpers)</td>
+        <td>Business logic that depends on object state</td>
+    </tr>
+</table>
+
+<div class="callout">
+    <strong>📌 Clean ABAP Guidance</strong>
+    SAP's Clean ABAP style guide recommends <strong>preferring instance methods</strong> over static methods, because instance methods:
+    <ul>
+        <li>Better reflect object-oriented design</li>
+        <li>Can be overridden in subclasses</li>
+        <li>Can be mocked in unit tests</li>
+    </ul>
+    Use static methods only for utility functions or factory methods.
+</div>
+
+<h3>7.2 Class Definition Example</h3>
+
+<pre><code>CLASS zcl_step1_math DEFINITION
+  PUBLIC
+  FINAL
+  CREATE PUBLIC.
+
+  PUBLIC SECTION.
+    " Static method – utility, no state
+    CLASS-METHODS add
+      IMPORTING iv_a TYPE i
+                iv_b TYPE i
+      RETURNING VALUE(rv_sum) TYPE i.
+
+    " Instance method – uses object state
+    METHODS constructor
+      IMPORTING iv_base TYPE i.
+
+    METHODS multiply_by_base
+      IMPORTING iv_factor TYPE i
+      RETURNING VALUE(rv_result) TYPE i.
+
+  PRIVATE SECTION.
+    DATA mv_base TYPE i.
+ENDCLASS.
+
+CLASS zcl_step1_math IMPLEMENTATION.
+  METHOD add.
+    rv_sum = iv_a + iv_b.
+  ENDMETHOD.
+
+  METHOD constructor.
+    mv_base = iv_base.
+  ENDMETHOD.
+
+  METHOD multiply_by_base.
+    rv_result = mv_base * iv_factor.
+  ENDMETHOD.
+ENDCLASS.</code></pre>
+
+<h3>7.3 Calling the Methods</h3>
+
+<pre><code>" Static method – called via class name
+DATA(lv_sum) = zcl_step1_math=>add( iv_a = 10 iv_b = 20 ).
+" Result: 30
+
+" Instance method – called via object reference
+DATA(lo_math) = NEW zcl_step1_math( iv_base = 5 ).
+DATA(lv_product) = lo_math->multiply_by_base( iv_factor = 4 ).
+" Result: 20</code></pre>
+
+<div class="exercise">
+    <div class="exercise-title">Exercise 7.1 – Static vs. Instance</div>
+    <p>For each scenario, decide whether you should use a static method or an instance method, and explain why:</p>
+    <ol>
+        <li>A method that formats a date into a string.</li>
+        <li>A method that calculates the total price of items in a shopping cart, where the cart is an object.</li>
+        <li>A method that converts a temperature from Celsius to Fahrenheit.</li>
+        <li>A method that validates whether a customer's credit limit is exceeded based on the customer object's current balance.</li>
+    </ol>
+</div>
+
+<details>
+    <summary>Show Solution – Exercise 7.1</summary>
+    <div class="details-content">
+        <span class="answer-label">Solution</span>
+        <ol>
+            <li><strong>Static method.</strong> Pure utility function — no object state needed.</li>
+            <li><strong>Instance method.</strong> It operates on the shopping cart object's state (the items).</li>
+            <li><strong>Static method.</strong> Pure mathematical conversion — no state.</li>
+            <li><strong>Instance method.</strong> It depends on the customer object's current balance (instance state).</li>
+        </ol>
+    </div>
+</details>
+</section>
+
+<!-- ============ SECTION 8 ============ -->
+<section id="joule">
+<h2>8. Joule for Developers</h2>
+
+<p>Joule is SAP's generative AI assistant integrated directly into ABAP Development Tools (ADT) in Eclipse. It accelerates development through code generation, explanation, and test creation.</p>
+
+<h3>8.1 Joule Capabilities in ADT</h3>
+
+<table>
+    <tr>
+        <th>Capability</th>
+        <th>What It Does</th>
+        <th>How to Access</th>
+    </tr>
+    <tr>
+        <td><strong>Explain</strong></td>
+        <td>Explains selected ABAP code or CDS views in natural language</td>
+        <td>Select code → Right-click → Joule → Explain</td>
+    </tr>
+    <tr>
+        <td><strong>Generate Tests</strong></td>
+        <td>Creates ABAP Unit test classes for a class or CDS view</td>
+        <td>Right-click class → Joule → Start Chat for ABAP Unit → Generate Tests</td>
+    </tr>
+    <tr>
+        <td><strong>Predictive Code Completion</strong></td>
+        <td>Suggests code completions as you type</td>
+        <td>Type in the editor — suggestions appear automatically</td>
+    </tr>
+    <tr>
+        <td><strong>Freestyle Chat</strong></td>
+        <td>Ask questions in natural language (e.g., "How do I write a REDUCE?")</td>
+        <td>Open Joule chat and type your question</td>
+    </tr>
+</table>
+
+<h3>8.2 Generating Unit Tests with Joule</h3>
+
+<ol>
+    <li>Open the class you want to test in ADT.</li>
+    <li>Right-click the class in the Project Explorer.</li>
+    <li>Select <strong>Joule → Start Chat for ABAP Unit</strong>.</li>
+    <li>In the chat, select <strong>Generate Tests</strong>.</li>
+    <li>Joule analyzes the class and generates a test class with test methods for each public method.</li>
+    <li>Review the generated test class — Joule may create assertions you need to adjust.</li>
+    <li>Run the test class using <strong>Run As → ABAP Unit Test</strong>.</li>
+</ol>
+
+<div class="callout">
+    <strong>💡 Exam Relevance</strong>
+    The C_ABAPD beta exam explicitly tests Joule. You should be comfortable using Joule to generate a unit test and explain what the generated test does.
+</div>
+
+<h3>8.3 Explaining Code with Joule</h3>
+
+<ol>
+    <li>Select a block of ABAP code in the editor.</li>
+    <li>Right-click → <strong>Joule → Explain</strong>.</li>
+    <li>Joule opens a chat panel and explains the selected code line by line in natural language.</li>
+</ol>
+
+<div class="exercise">
+    <div class="exercise-title">Exercise 8.1 – Joule Practice</div>
+    <ol>
+        <li>Write a simple class with one method that takes two integers and returns their sum.</li>
+        <li>Use Joule to generate a unit test for this method.</li>
+        <li>Review the generated test class. Does it test the correct behavior? Does it cover edge cases (e.g., negative numbers)?</li>
+        <li>Run the test and confirm it passes.</li>
+        <li>Use Joule to explain the generated test class. Do you understand what each test method does?</li>
+    </ol>
+</div>
+
+<details>
+    <summary>Show Solution – Exercise 8.1</summary>
+    <div class="details-content">
+        <span class="answer-label">Solution</span>
+        <p><strong>Step 1 – Class:</strong></p>
+        <pre><code>CLASS zcl_step1_calc DEFINITION
+  PUBLIC FINAL CREATE PUBLIC.
+  PUBLIC SECTION.
+    CLASS-METHODS add
+      IMPORTING iv_a TYPE i
+                iv_b TYPE i
+      RETURNING VALUE(rv_sum) TYPE i.
+ENDCLASS.
+
+CLASS zcl_step1_calc IMPLEMENTATION.
+  METHOD add.
+    rv_sum = iv_a + iv_b.
+  ENDMETHOD.
+ENDCLASS.</code></pre>
+
+<p><strong>Step 2 – Joule-generated test (example):</strong></p>
+<pre><code>CLASS ltc_calc DEFINITION FOR TESTING
+  DURATION SHORT
+  RISK LEVEL HARMLESS.
+  PRIVATE SECTION.
+    METHODS test_positive FOR TESTING.
+    METHODS test_negative FOR TESTING.
+    METHODS test_zero FOR TESTING.
+ENDCLASS.
+
+CLASS ltc_calc IMPLEMENTATION.
+  METHOD test_positive.
+    DATA(lv_result) = zcl_step1_calc=>add( iv_a = 2 iv_b = 3 ).
+    cl_abap_unit_assert=>assert_equals(
+      act = lv_result
+      exp = 5
+    ).
+  ENDMETHOD.
+
+  METHOD test_negative.
+    DATA(lv_result) = zcl_step1_calc=>add( iv_a = -2 iv_b = -3 ).
+    cl_abap_unit_assert=>assert_equals(
+      act = lv_result
+      exp = -5
+    ).
+  ENDMETHOD.
+
+  METHOD test_zero.
+    DATA(lv_result) = zcl_step1_calc=>add( iv_a = 0 iv_b = 0 ).
+    cl_abap_unit_assert=>assert_equals(
+      act = lv_result
+      exp = 0
+    ).
+  ENDMETHOD.
+ENDCLASS.</code></pre>
+
+<div class="callout success">
+    <strong>✅ Note</strong>
+    Joule-generated tests may not cover all edge cases. Always review and add tests for boundary conditions, overflow, and type-specific behavior.
+</div>
+    </div>
+</details>
+</section>
+
+<!-- ============ SECTION 9 ============ -->
+<section id="quiz">
+<h2>9. Practice Quiz</h2>
+
+<p>Answer these questions without looking at the guide. Then check your answers below.</p>
+
+<div class="exercise">
+    <div class="exercise-title">Question 1 – Modern Syntax</div>
+    <p>What is the output of this code?</p>
+    <pre><code>DATA(nums) = VALUE i_table( ( 3 ) ( 7 ) ( 2 ) ( 9 ) ( 5 ) ).
+DATA(result) = REDUCE i(
+  INIT x = 0
+  FOR n IN nums
+  WHERE ( n > 4 )
+  NEXT x = x + n
+).
+WRITE / result.</code></pre>
+</div>
+
+<details>
+    <summary>Show Answer – Q1</summary>
+    <div class="details-content">
+        <span class="answer-label">Answer</span>
+        <p><strong>Output: 21</strong></p>
+        <p>The <code>WHERE</code> condition filters to numbers greater than 4: 7, 9, 5. The <code>REDUCE</code> sums them: 7 + 9 + 5 = 21.</p>
+    </div>
+</details>
+
+<div class="exercise">
+    <div class="exercise-title">Question 2 – Internal Tables</div>
+    <p>You have a hashed internal table <code>lt_data</code> with a unique key on <code>id</code>. Which of these statements is <strong>invalid</strong>?</p>
+    <ol>
+        <li><code>READ TABLE lt_data INTO DATA(ls) WITH TABLE KEY id = 'A'.</code></li>
+        <li><code>READ TABLE lt_data INTO DATA(ls) INDEX 1.</code></li>
+        <li><code>LOOP AT lt_data INTO DATA(ls).</code></li>
+        <li><code>INSERT VALUE #( id = 'B' ) INTO TABLE lt_data.</code></li>
+    </ol>
+</div>
+
+<details>
+    <summary>Show Answer – Q2</summary>
+    <div class="details-content">
+        <span class="answer-label">Answer</span>
+        <p><strong>Invalid: Option 2</strong> — <code>READ TABLE ... INDEX</code> is not allowed on a hashed table. Hashed tables can only be accessed by key, not by index.</p>
+    </div>
+</details>
+
+<div class="exercise">
+    <div class="exercise-title">Question 3 – ABAP SQL</div>
+    <p>Write an ABAP SQL statement that joins <code>scarr</code> and <code>spfli</code> on <code>carrid</code> and returns <code>carrid</code>, <code>carrname</code>, and <code>connid</code> for a given <code>carrid</code>.</p>
+</div>
+
+<details>
+    <summary>Show Answer – Q3</summary>
+    <div class="details-content">
+        <span class="answer-label">Answer</span>
+        <pre><code>SELECT a.carrid, a.carrname, b.connid
+  FROM scarr AS a
+  INNER JOIN spfli AS b ON a.carrid = b.carrid
+  WHERE a.carrid = @lv_carrid
+  INTO TABLE @DATA(lt_result).</code></pre>
+    </div>
+</details>
+
+<div class="exercise">
+    <div class="exercise-title">Question 4 – CDS Views</div>
+    <p>What is the difference between an interface view (ZI_) and a projection view (ZC_)? Why does SAP use two layers?</p>
+</div>
+
+<details>
+    <summary>Show Answer – Q4</summary>
+    <div class="details-content">
+        <span class="answer-label">Answer</span>
+        <p><strong>Interface view (ZI_)</strong> defines the core business data model. It directly accesses database tables, contains all relevant business fields and associations, and is reusable.</p>
+        <p><strong>Projection view (ZC_)</strong> is built on top of the interface view. It exposes only the fields needed for a specific consumer (e.g., a Fiori app), adds UI annotations, and is not reusable across different apps.</p>
+        <p><strong>Two layers</strong> provide separation of concerns: the core data model stays stable and reusable, while UI-specific details are isolated in the projection layer.</p>
+    </div>
+</details>
+
+<div class="exercise">
+    <div class="exercise-title">Question 5 – ABAP Cloud</div>
+    <p>Why is <code>SELECT * FROM mara</code> not allowed in ABAP Cloud? How would you fix it?</p>
+</div>
+
+<details>
+    <summary>Show Answer – Q5</summary>
+    <div class="details-content">
+        <span class="answer-label">Answer</span>
+        <p><code>MARA</code> is a non-released database table. ABAP Cloud only allows access to <strong>released APIs</strong> (e.g., released CDS views) to ensure upgrade stability and Clean Core compliance.</p>
+        <p><strong>Fix:</strong> Use a released CDS view such as <code>I_Product</code> instead of the <code>MARA</code> table. For example:</p>
+        <pre><code>SELECT Product, ProductType
+  FROM I_Product
+  WHERE Product = @lv_matnr
+  INTO TABLE @DATA(lt_products).</code></pre>
+    </div>
+</details>
+
+<div class="exercise">
+    <div class="exercise-title">Question 6 – OO Design</div>
+    <p>What is the difference between a static method and an instance method? When would you use each?</p>
+</div>
+
+<details>
+    <summary>Show Answer – Q6</summary>
+    <div class="details-content">
+        <span class="answer-label">Answer</span>
+        <p><strong>Static method:</strong> Called via class name (<code>zcl_class=&gt;method</code>). Can only access static attributes. Used for utility functions with no object state.</p>
+        <p><strong>Instance method:</strong> Called via object reference (<code>lo_obj-&gt;method</code>). Can access all attributes (static and instance). Used for business logic that depends on object state.</p>
+        <p><strong>Guidance:</strong> Prefer instance methods for business logic (easier to test and mock). Use static methods only for pure utility functions or factory methods.</p>
+    </div>
+</details>
+
+<div class="exercise">
+    <div class="exercise-title">Question 7 – Joule</div>
+    <p>How would you use Joule to generate a unit test for an ABAP class?</p>
+</div>
+
+<details>
+    <summary>Show Answer – Q7</summary>
+    <div class="details-content">
+        <span class="answer-label">Answer</span>
+        <ol>
+            <li>Right-click the class in ADT's Project Explorer.</li>
+            <li>Select <strong>Joule → Start Chat for ABAP Unit</strong>.</li>
+            <li>In the chat, select <strong>Generate Tests</strong>.</li>
+            <li>Joule analyzes the class and generates a test class with test methods.</li>
+            <li>Review the generated tests and adjust assertions if needed.</li>
+            <li>Run the test class using <strong>Run As → ABAP Unit Test</strong>.</li>
+        </ol>
+    </div>
+</details>
+</section>
+
+</main>
+
+<footer class="footer">
+    <p>C_ABAPD Step 1 Study Guide – Core ABAP Skills</p>
+    <p>Practice in a real ABAP Cloud system. Type every line of code. Run ATC checks daily.</p>
+</footer>
+
+</div>
+</body>
+</html>
